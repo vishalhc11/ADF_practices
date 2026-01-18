@@ -5,8 +5,8 @@
 		"annotations": [],
 		"type": "AzureBlobFS",
 		"typeProperties": {
-			"sasUri": "https://intellibistorage.dfs.core.windows.net/adfcontainter/reporting",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEFCREExQTgxLURGQzQtNEFBOC1CRUJCLUUyMTQzMTlEMzZGRF8wZWJiMDYxMi1kYzZmLTQ5MTQtYjUxMC03NTI5ODAwOThjOWQiDQp9"
+			"sasUri": "https://intellibistorage.dfs.core.windows.net/adfcontainter/reporting/",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEFCREExQTgxLURGQzQtNEFBOC1CRUJCLUUyMTQzMTlEMzZGRF80Y2JiMGRmNi0zY2IwLTQ1NjgtOWNkMy1hMmE2ZmQ5NDlhNGEiDQp9"
 		}
 	}
 }
