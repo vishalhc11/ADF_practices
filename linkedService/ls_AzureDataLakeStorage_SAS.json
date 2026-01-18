@@ -6,7 +6,7 @@
 		"annotations": [],
 		"type": "AzureBlobFS",
 		"typeProperties": {
-			"sasUri": "https://intellibistorage.blob.core.windows.net/adfcontainter/source?sp=racwdlme&st=2026-01-18T09:39:53Z&se=2026-01-18T17:54:53Z&spr=https&sv=2024-11-04&sr=d&sig=jSMMDmCAz54iaOPGWHqhbTL0ck3sUYvMBJt0p12hN4Y%3D&sdd=1?sp=racwdlme&st=2026-01-18T09:39:53Z&se=2026-01-18T17:54:53Z&spr=https&sv=2024-11-04&sr=d&sig=jSMMDmCAz54iaOPGWHqhbTL0ck3sUYvMBJt0p12hN4Y%3D&sdd=1"
+			"sasUri": "https://intellibistorage.dfs.core.windows.net/adfcontainer?sv=2024-11-04&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2026-01-18T18:04:23Z&st=2026-01-18T09:49:23Z&spr=https&sig=7bw1uv9Ve%2FE1jZzZfwUqIxWiIQl7e9wUDIzJkFqy3tQ%3D?sv=2024-11-04&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2026-01-18T18:04:23Z&st=2026-01-18T09:49:23Z&spr=https&sig=7bw1uv9Ve%2FE1jZzZfwUqIxWiIQl7e9wUDIzJkFqy3tQ%3D"
 		}
 	}
 }
