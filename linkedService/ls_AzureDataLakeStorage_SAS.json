@@ -1,0 +1,12 @@
+{
+	"name": "ls_AzureDataLakeStorage_SAS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"description": "Create a linked service to connect to ADLS Gen2 using SAS Token URI",
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"sasUri": "https://intellibistorage.blob.core.windows.net/adfcontainter/source?sp=racwdlme&st=2026-01-18T09:39:53Z&se=2026-01-18T17:54:53Z&spr=https&sv=2024-11-04&sr=d&sig=jSMMDmCAz54iaOPGWHqhbTL0ck3sUYvMBJt0p12hN4Y%3D&sdd=1?sp=racwdlme&st=2026-01-18T09:39:53Z&se=2026-01-18T17:54:53Z&spr=https&sv=2024-11-04&sr=d&sig=jSMMDmCAz54iaOPGWHqhbTL0ck3sUYvMBJt0p12hN4Y%3D&sdd=1"
+		}
+	}
+}
