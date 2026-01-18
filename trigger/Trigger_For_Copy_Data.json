@@ -1,0 +1,25 @@
+{
+	"name": "Trigger_For_Copy_Data",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Copy_Files_Src_Dest",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2025-12-31T10:52:00",
+				"endTime": "2025-12-31T16:45:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}

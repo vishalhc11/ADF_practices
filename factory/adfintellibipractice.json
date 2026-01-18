@@ -1,0 +1,9 @@
+{
+	"name": "adfintellibipractice",
+	"location": "centralindia",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "042439b8-c427-4e26-972d-e4da5fd1b531",
+		"tenantId": "cfb01d88-62e7-453b-b2d3-c1b3afd350ba"
+	}
+}

@@ -1,0 +1,82 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_src_dataflow",
+						"type": "DatasetReference"
+					},
+					"name": "dataflow1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_selectedrows",
+						"type": "DatasetReference"
+					},
+					"name": "sinkselectedrow"
+				}
+			],
+			"transformations": [
+				{
+					"name": "selectCols"
+				},
+				{
+					"name": "filterOnProduct"
+				},
+				{
+					"name": "ConditonalSplitOnProduct"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "alterRows"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          product_id as string,",
+				"          product_category_name as string,",
+				"          product_name_lenght as short,",
+				"          product_description_lenght as short,",
+				"          product_photos_qty as short,",
+				"          product_weight_g as short,",
+				"          product_length_cm as short,",
+				"          product_height_cm as short,",
+				"          product_width_cm as short",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> dataflow1",
+				"dataflow1 select(mapColumn(",
+				"          product_id,",
+				"          product_category_name,",
+				"          product_name_lenght,",
+				"          product_description_lenght,",
+				"          product_photos_qty",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectCols",
+				"selectCols filter(product_photos_qty > 1) ~> filterOnProduct",
+				"filterOnProduct split(like(product_category_name,'a%'),",
+				"     rlike(product_category_name,'^[bcd].*'),",
+				"     disjoint: false) ~> ConditonalSplitOnProduct@(StreamStartsWithA, StreamStartsWithBCD, otherStreams)",
+				"ConditonalSplitOnProduct@StreamStartsWithA aggregate(groupBy(product_id = like(product_category_name,'a%')),",
+				"     sum_of_product_qauntity = sum(product_photos_qty)) ~> aggregate1",
+				"ConditonalSplitOnProduct@otherStreams alterRow(insertIf(1==1)) ~> alterRows",
+				"alterRows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sinkselectedrow"
+			]
+		}
+	}
+}

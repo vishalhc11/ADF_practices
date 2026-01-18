@@ -1,0 +1,51 @@
+{
+	"name": "RemoveDuplicateRecordsFlowlet",
+	"properties": {
+		"type": "Flowlet",
+		"typeProperties": {
+			"sources": [],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "selectCols"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "Src"
+				},
+				{
+					"name": "output1"
+				}
+			],
+			"scriptLines": [
+				"input(output(",
+				"          emp_id as string,",
+				"          name as string,",
+				"          gender as string,",
+				"          salary as string",
+				"     ),",
+				"     order: 0,",
+				"     allowSchemaDrift: true) ~> Src",
+				"Src select(mapColumn(",
+				"          id = emp_id,",
+				"          name,",
+				"          gender,",
+				"          salary",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectCols",
+				"selectCols aggregate(groupBy(id,",
+				"          name,",
+				"          gender,",
+				"          salary),",
+				"     count = count()) ~> aggregate1",
+				"aggregate1 output(mapColumn(",
+				"          each(match(/* All input columns */true()),",
+				"               /* Input name */$$ = $$)",
+				"     )) ~> output1"
+			]
+		}
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"name": "StorageTriggerOnDest",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Storage_trg_demo",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/adfcontainter/blobs/destination/File_2",
+			"ignoreEmptyBlobs": false,
+			"scope": "/subscriptions/6b84dcc5-6bdb-47dc-ac29-a3bf5b576c4e/resourceGroups/rs_azurefree_intellibi_practice/providers/Microsoft.Storage/storageAccounts/intellibistorage",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

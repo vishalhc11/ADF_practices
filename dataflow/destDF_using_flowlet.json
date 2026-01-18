@@ -1,0 +1,78 @@
+{
+	"name": "destDF_using_flowlet",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText7",
+						"type": "DatasetReference"
+					},
+					"name": "source"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText8",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "flowlet1",
+					"flowlet": {
+						"referenceName": "RemoveDuplicateRecordsFlowlet",
+						"type": "DataFlowReference"
+					}
+				},
+				{
+					"name": "dummyDerivedCol"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          dept_id as string,",
+				"          name as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source",
+				"select1 compose(mapColumn(",
+				"          emp_id = id,",
+				"          name,",
+				"          gender = id,",
+				"          salary = id",
+				"     ),",
+				"     composition: 'RemoveDuplicateRecordsFlowlet') ~> flowlet1@(output1)",
+				"source derive(gender = 'M',",
+				"          salary = 1) ~> dummyDerivedCol",
+				"dummyDerivedCol select(mapColumn(",
+				"          id = dept_id,",
+				"          name,",
+				"          gender,",
+				"          salary",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"flowlet1@output1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          id,",
+				"          name",
+				"     )) ~> sink1"
+			]
+		}
+	}
+}
